@@ -1,28 +1,28 @@
-# Movies Explorer - App de Consulta de Películas
+# FableTask - App de Lista de Tareas Diarias
 
 ## 1. Identificación del Proyecto
 
-- **Nombre de la App:** Movies Explorer
+- **Nombre de la App:** FableTask
 - **Asignatura/Profesor:** Desarrollo de Aplicaciones Móviles / M.C. Leonel González Vidales
 - **Periodo/Fecha:** Septiembre 2025
-- **URL del Repositorio:** https://github.com/l3onet/movies-explorer-app
+- **URL del Repositorio:** https://github.com/Paninipy/FableTask
 
 ## 2. Descripción del Proyecto
 
-Movies Explorer es una aplicación móvil desarrollada con React Native y Expo que permite a los usuarios explorar una cartelera de películas con información detallada. La aplicación cuenta con una interfaz moderna con tema oscuro y navegación fluida entre pantallas.
+FableTask es una aplicación móvil que permite a los usuarios capturar, organizar y revisar sus tareas diarias de manera efectiva. La aplicación se centra en una interfaz minimalista y fluida que facilita la interacción constante sin distracciones.
 
 ### Características Principales:
-- 📱 **Cartelera de Películas**: Lista de películas con información básica
-- 🎬 **Detalles de Película**: Vista detallada con sinopsis, género y calificación
-- 🎨 **Interfaz Moderna**: Diseño con tema oscuro y componentes estilizados
-- 🧭 **Navegación Intuitiva**: Sistema de navegación stack con transiciones suaves
-- 📊 **Datos de Ejemplo**: Películas precargadas para demostración
+- ✅ **Gestión Completa de Tareas**: Permite crear, editar y eliminar tareas activas con facilidad
+- 🎯 **Marcado Rápido**: Opción simple para marcar tareas como completadas
+- 📜 **Historial de Logros**: Pantalla dedicada para revisar todas las tareas finalizadas
+- 🎨 **Interfaz Simple y Moderna**: Diseño limpio y enfocado en la usabilidad
+- ⚙️ **Manejo de Estado con Context**: Utiliza la Context API de React para una gestión de estado global de las tareas
 
 ### Funcionalidades Implementadas:
-- Lista de películas con tarjetas informativas
-- Pantalla de detalles con información completa
-- Navegación entre pantallas con botón de regreso
-- Diseño responsivo y optimizado para móviles
+- Lista principal de tareas pendientes y activas
+- Formulario reutilizable para añadir nuevas tareas y editar existentes
+- Navegación por pestañas para alternar entre Tareas y Historial
+- Persistencia de datos de las tareas mientras la app está activa
 - Estructura de código modular y escalable
 
 ## 3. Tecnologías y Versiones Utilizadas
@@ -31,9 +31,10 @@ Movies Explorer es una aplicación móvil desarrollada con React Native y Expo q
 - **React Native:** 0.81.4
 - **React:** 19.1.0
 - **Expo:** ~54.0.3
-- **React Navigation:** v7.1.17 (Native Stack v7.3.26)
+- **React Navigation:** v7.1.17 (Native Stack, Tab Navigation)
 - **React Native Screens:** ~4.16.0
 - **React Native Safe Area Context:** ~5.6.0
+- **React Context API**: Para la gestión de las listas de tareas
 
 ### Herramientas de Desarrollo Requeridas:
 
@@ -66,50 +67,48 @@ npx expo doctor
 
 ### Organización de Archivos:
 ```
-peliculas/
-├── App.js                          # Componente principal de la aplicación
+FableTask/
+├── App.js                          # Componente principal que envuelve el Context y la Navegación
 ├── app.json                        # Configuración de Expo
 ├── package.json                    # Dependencias y scripts
 ├── index.js                        # Punto de entrada
 ├── assets/                         # Recursos estáticos
-│   ├── adaptive-icon.png
-│   ├── favicon.png
-│   ├── icon.png
-│   └── splash-icon.png
 └── src/
-    ├── components/                 # Componentes reutilizables
-    │   └── Navigation/
-    │       ├── IconBack.js
-    │       └── index.js
-    ├── navigations/                # Configuración de navegación
-    │   ├── AppNavigation.js
-    │   ├── HandlerNavigation.js
+    ├── components/                 # Componentes reutilizables (Botón de Tarea, etc.)
+    ├── context/                    # Lógica de gestión de estado global
     │   ├── index.js
-    │   └── Styles.styles.js
+    │   └── TasksContext.js         # Contexto que maneja las tareas activas y completadas
+    ├── navigations/                # Configuración de navegadores (Tabs y Stack)
+    │   ├── AppNavigation.js        # Navegación Stack principal (para agregar/editar)
+    │   ├── index.js
+    │   └── TabNavigation.js        # Navegación por Pestañas (Tareas y Historial)
     ├── screens/                    # Pantallas de la aplicación
-    │   └── Movies/
+    │   └── Tasks/
+    │       ├── AddTaskScreen.js    # Pantalla para crear/editar tareas
+    │       ├── HistoryScreen.js    # Pantalla que muestra tareas completadas
     │       ├── index.js
-    │       ├── MovieDetailScreen.js
-    │       └── MoviesListScreen.js
+    │       └── TasksListScreen.js  # Pantalla principal con la lista de pendientes
     └── utils/                      # Utilidades y constantes
-        ├── index.js
-        └── screens.js
+       ├── index.js
+       └── screens.js               # Constantes para nombres de rutas
 ```
 
 ### Arquitectura de la Aplicación:
-- **App.js**: Componente raíz con NavigationContainer
-- **AppNavigation.js**: Configuración del Stack Navigator
-- **MoviesListScreen.js**: Pantalla principal con lista de películas
-- **MovieDetailScreen.js**: Pantalla de detalles de película individual
-- **screens.js**: Constantes para nombres de pantallas
+- **TasksContext.js**: Fuente única de verdad para la lista de tareas.
+
+- **TabNavigation.js**: Define las dos vistas principales: Tareas Pendientes y Tareas Completadas (Historial).
+
+- **AppNavigation.js*: Gestiona las transiciones a pantallas de formulario (AddTaskScreen) desde la vista de tareas.
+
+- **TasksListScreen.js**: Pantalla central para interactuar con las tareas activas.
 
 ## 5. Instalación y Configuración
 
 ### Instalación de Dependencias:
 ```bash
 # Clonar el repositorio
-git clone https://github.com/l3onet/movies-explorer-app
-cd movies-explorer-app
+git clone https://github.com/Paninipy/FableTask
+cd FableTask
 
 # Instalar dependencias
 npm install
@@ -181,64 +180,69 @@ npx expo start --web
 
 ## 7. Funcionalidades de la Aplicación
 
-### Pantalla Principal (MoviesListScreen):
-- **Lista de Películas**: Muestra una colección de películas en formato de tarjetas
-- **Información Básica**: Título, año, género y calificación de cada película
-- **Navegación**: Toca cualquier película para ver detalles completos
-- **Diseño**: Interfaz con tema oscuro y tarjetas estilizadas
+### Pantalla Principal - Tareas Activas (TasksListScreen):
+- **Lista de Tareas**: Muestra todas las tareas pendientes.
+
+- **Acciones**: Botones para marcar como completada, editar o eliminar.
+
+- **Creación de tareas**: Acceso rápido a la pantalla de formulario.
 
 ![Pantalla1](screenshots/pantalla1.jpg)
 
-### Pantalla de Detalles (MovieDetailScreen):
-- **Información Completa**: Título, año, género y calificación detallada
-- **Sinopsis**: Descripción completa de la película
-- **Botones de Acción**: 
-  - "Ver Trailer" (funcionalidad preparada para implementar)
-  - "Agregar a Favoritos" (funcionalidad preparada para implementar)
-- **Navegación**: Botón de regreso para volver a la lista
+### Pantalla de Formulario de Tareas (AddTaskScreen):
+- **Creación y Edición**: Pantalla modular que se utiliza tanto para agregar nuevas tareas como para editar las existentes.
+
+- **Input de Texto**: Campo para introducir la descripción de la tarea.
+
+- **Botones de Acción**: Botón "Guardar" o "Actualizar" para aplicar cambios y regresar a la lista.
+
+- **Botón de Eliminación**: Disponible para borrar tareas existentes.
 
 ![Pantalla2](screenshots/pantalla2.jpg)
 
-### Datos de Ejemplo Incluidos:
-- Avatar: The Way of Water (2022)
-- Top Gun: Maverick (2022)
-- Black Panther: Wakanda Forever (2022)
-- Jurassic World Dominion (2022)
+### Pantalla de Historial (HistoryScreen):
+- **Registro de Tareas**: Muestra todas las tareas marcadas como completadas.
+
+- **Limpiar Historial**: Opción para limpiar el historial de tareas completadas.
+
+![Pantalla3](screenshots/pantalla3.jpg)
 
 ### Características Técnicas:
-- **Navegación Stack**: Transiciones suaves entre pantallas
-- **Diseño Responsivo**: Optimizado para diferentes tamaños de pantalla
-- **Tema Oscuro**: Interfaz moderna con colores oscuros
+- **Navegación por Pestañas**: Permite cambiar rápidamente entre Tareas Activas e Historial.
+- **Gestión de Estado**: Toda la lógica de tareas está centralizada en el Context, facilitando la adición de persistencia.
+- **Diseño Responsivo**: Optimizado para diferentes tamaños de pantalla móvil.
 - **Componentes Modulares**: Código organizado y reutilizable
 
 ## 8. Desarrollo y Extensión
 
 ### Próximas Funcionalidades Sugeridas:
-- **Integración con API**: Conectar con TMDB o similar para datos reales
-- **Sistema de Favoritos**: Persistencia local con AsyncStorage
-- **Búsqueda**: Filtrado y búsqueda de películas
-- **Categorías**: Organización por géneros
-- **Trailers**: Integración con YouTube API
-- **Notificaciones**: Alertas de nuevas películas
+- **Persistencia de Datos**: Usar AsyncStorage o Firebase para que las tareas se guarden permanentemente.
+
+- **Filtros/Ordenación**: Opciones para ordenar por fecha de creación o prioridad (si se añade el campo).
+
+- **Notificaciones**: Alertas para recordar tareas pendientes.
 
 ### Estructura para Nuevas Pantallas:
 ```javascript
 // Ejemplo de nueva pantalla
-export function NewScreen() {
-  const navigation = useNavigation();
-  
-  return (
-    <View style={styles.container}>
-      {/* Contenido de la pantalla */}
-    </View>
-  );
+export function SettingsScreen() {
+  const navigation = useNavigation();
+  
+  return (
+    <View style={styles.container}>
+      {/* Contenido de la pantalla */}
+    </View>
+  );
 }
+
 ```
 
 ### Agregar Nuevas Rutas:
-1. Actualizar `src/utils/screens.js` con nuevas constantes
-2. Agregar Screen en `src/navigations/AppNavigation.js`
-3. Crear componente en `src/screens/`
+1. Actualizar `src/utils/screens.js` con nuevas constantes.
+
+2. Agregar la nueva Screen en `src/navigations/TabNavigation.js` (si es una pestaña principal) o `src/navigations/AppNavigation.js` (si es una sub-pantalla).
+
+3. Crear el componente en `src/screens/`
 
 ## 9. Troubleshooting
 
@@ -270,7 +274,3 @@ rm -rf node_modules package-lock.json && npm install
 - [Expo Components](https://docs.expo.dev/versions/latest/)
 
 ---
-
-**Desarrollado por:** Leonel Gonzalez Vidales 
-**Última actualización:** 3 de octubre 2025  
-**Versión:** 1.1.0
