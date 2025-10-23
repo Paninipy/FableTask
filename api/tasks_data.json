@@ -1,0 +1,28 @@
+{
+  "completed": [
+    {
+      "id": "1761195972078",
+      "title": "Tarea 3",
+      "description": "",
+      "completed": true,
+      "createdAt": "2025-10-23T05:06:10.823Z",
+      "completedAt": "2025-10-23T05:06:11.725Z"
+    },
+    {
+      "id": "1761195963053",
+      "title": "Tarea 2",
+      "description": "",
+      "completed": true,
+      "createdAt": "2025-10-23T05:06:01.629Z",
+      "completedAt": "2025-10-23T05:06:02.697Z"
+    },
+    {
+      "id": "1761195956682",
+      "title": "Tarea 1",
+      "description": "",
+      "completed": true,
+      "createdAt": "2025-10-23T05:05:55.216Z",
+      "completedAt": "2025-10-23T05:05:56.317Z"
+    }
+  ]
+}

@@ -1,11 +1,20 @@
 // src/context/TasksContext.js
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const TasksContext = createContext();
+const API_URL = 'http://192.168.1.83:3001'; // Cambia por la IP de tu PC
 
 export const TasksProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
+
+  // 👇 Agrega este bloque para probar la conexión con tu API
+  useEffect(() => {
+    fetch(`${API_URL}/`)
+      .then(res => res.json())
+      .then(data => console.log('✅ Conexión exitosa con API:', data))
+      .catch(err => console.error('❌ No se pudo conectar con API:', err));
+  }, []);
 
   const addTask = (task) => {
     setTasks((prevTasks) => [task, ...prevTasks]);
@@ -28,30 +37,31 @@ export const TasksProvider = ({ children }) => {
   };
 
   const completeTask = (id) => {
-    // Encontrar la tarea
     const taskToComplete = tasks.find((task) => task.id === id);
-    
     if (taskToComplete) {
-      // Agregar al historial con fecha de completado
       const completedTask = {
         ...taskToComplete,
         completed: true,
         completedAt: new Date(),
       };
-      
-      setCompletedTasks((prevCompleted) => [completedTask, ...prevCompleted]);
+
+      setCompletedTasks((prev) => [completedTask, ...prev]);
+
+      fetch(`${API_URL}/completed`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(completedTask),
+      }).catch(err => console.error('Error guardando historial', err));
     }
 
-    // Marcar como completada visualmente
-    setTasks((prevTasks) =>
-      prevTasks.map((task) =>
+    setTasks((prev) =>
+      prev.map((task) =>
         task.id === id ? { ...task, completed: true } : task
       )
     );
 
-    // Eliminar de tareas pendientes después de 300ms
     setTimeout(() => {
-      setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+      setTasks((prev) => prev.filter((task) => task.id !== id));
     }, 300);
   };
 
