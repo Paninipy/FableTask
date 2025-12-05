@@ -117,12 +117,13 @@ La app usa una API simple en **Node.js + Express** para administrar
 tareas.
 
 ### 📌 Estructura básica de la API:
-
+```
 api/
 ├── package-lock.json
 ├── package.json
 ├── server.js
 └── tasks_data.json
+```
 
 ### 📌 Para ejecutar la API:
 ```bash
