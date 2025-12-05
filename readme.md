@@ -109,6 +109,87 @@ FableTask/
 # Clonar el repositorio
 git clone https://github.com/Paninipy/FableTask
 cd FableTask
+```
+
+## 6. API Local (Backend)
+
+La app usa una API simple en **Node.js + Express** para administrar
+tareas.
+
+### 📌 Estructura básica de la API:
+
+api/
+├── package-lock.json
+├── package.json
+├── server.js
+└── tasks_data.json
+
+### 📌 Para ejecutar la API:
+```bash
+    cd server
+    npm install
+    node server.js
+```
+
+La API corre en:
+
+    http://<tu-ip-local>:3000
+
+### 📌 Configurar la API al clonar el proyecto
+
+En el archivo:
+
+    src/context/TasksContext.js
+
+Modifica la constante:
+
+``` js
+export const API_URL = "http://TU-IP-LOCAL:3000";
+```
+
+> **Nota:** Si quieres ocultar tu IP, puedes usar
+> `http://localhost:3000` cuando uses emulador Android o un túnel de
+> Expo.
+
+------------------------------------------------------------------------
+
+## 7. Generación de APK con EAS
+
+### 1️⃣ Instalar EAS CLI
+```bash
+    npm install -g eas-cli
+```
+### 2️⃣ Configurar EAS
+
+    eas build:configure
+
+Selecciona **Android**.
+
+### 3️⃣ Crear la APK
+
+    eas build -p android --profile apk
+
+### 4️⃣ Descargar tu APK
+
+EAS te dará un enlace como:
+
+    https://expo.dev/artifacts/eas/xxxxxxx.apk
+
+Descárgalo y colócalo en:
+
+    Fabletask/builds/
+
+------------------------------------------------------------------------
+
+## 8. Documentación para Instalar la APK
+
+1.  Transferir el archivo `FableTask.apk` al dispositivo.
+2.  Activar *Instalar apps de fuentes desconocidas*.
+3.  Abrir el archivo y seguir instrucciones.
+4.  La app estará disponible en el cajón de aplicaciones.
+
+------------------------------------------------------------------------
+
 
 # Instalar dependencias
 npm install
@@ -132,7 +213,7 @@ npm install
 npm list --depth=0
 ```
 
-## 6. Ejecución de la Aplicación
+## 9. Ejecución de la Aplicación
 
 ### Scripts Disponibles:
 ```bash
@@ -213,7 +294,7 @@ npx expo start --web
 - **Diseño Responsivo**: Optimizado para diferentes tamaños de pantalla móvil.
 - **Componentes Modulares**: Código organizado y reutilizable
 
-## 8. Desarrollo y Extensión
+## 10. Desarrollo y Extensión
 
 ### Próximas Funcionalidades Sugeridas:
 - **Persistencia de Datos**: Usar AsyncStorage o Firebase para que las tareas se guarden permanentemente.
@@ -244,7 +325,7 @@ export function SettingsScreen() {
 
 3. Crear el componente en `src/screens/`
 
-## 9. Troubleshooting
+## 11. Troubleshooting
 
 ### Problemas Comunes:
 | Problema | Solución |
@@ -266,7 +347,7 @@ npx expo start --clear
 rm -rf node_modules package-lock.json && npm install
 ```
 
-## 10. Recursos y Documentación
+## 12. Recursos y Documentación
 
 - [Documentación de Expo](https://docs.expo.dev/)
 - [React Navigation](https://reactnavigation.org/)
