@@ -269,7 +269,9 @@ npx expo start --web
 
 - **Creación de tareas**: Acceso rápido a la pantalla de formulario.
 
-![Pantalla1](screenshots/pantalla1.jpg)
+<div align="center">
+  <img src="screenshots/pantalla1.jpg" width="300" alt="Pantalla1" />
+</div>
 
 ### Pantalla de Formulario de Tareas (AddTaskScreen):
 - **Creación y Edición**: Pantalla modular que se utiliza tanto para agregar nuevas tareas como para editar las existentes.
@@ -280,15 +282,18 @@ npx expo start --web
 
 - **Botón de Eliminación**: Disponible para borrar tareas existentes.
 
-![Pantalla2](screenshots/pantalla2.jpg)
+<div align="center">
+  <img src="screenshots/pantalla2.jpg" width="300" alt="Pantalla1" />
+</div>
 
 ### Pantalla de Historial (HistoryScreen):
 - **Registro de Tareas**: Muestra todas las tareas marcadas como completadas.
 
 - **Limpiar Historial**: Opción para limpiar el historial de tareas completadas.
 
-![Pantalla3](screenshots/pantalla3.jpg)
-
+<div align="center">
+  <img src="screenshots/pantalla3.jpg" width="300" alt="Pantalla1" />
+</div>
 ### Características Técnicas:
 - **Navegación por Pestañas**: Permite cambiar rápidamente entre Tareas Activas e Historial.
 - **Gestión de Estado**: Toda la lógica de tareas está centralizada en el Context, facilitando la adición de persistencia.
