@@ -294,6 +294,7 @@ npx expo start --web
 <div align="center">
   <img src="screenshots/pantalla3.jpg" width="200" alt="Pantalla1" />
 </div>
+
 ### Características Técnicas:
 - **Navegación por Pestañas**: Permite cambiar rápidamente entre Tareas Activas e Historial.
 - **Gestión de Estado**: Toda la lógica de tareas está centralizada en el Context, facilitando la adición de persistencia.
